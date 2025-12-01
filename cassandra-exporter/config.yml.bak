@@ -1,0 +1,12 @@
+global:
+  scrape_period: 10s
+  scrape_timeout: 5s
+  http_listen_port: 9500
+
+rules:
+  blacklist:
+    - "org_apache_cassandra_metrics_table:.*"
+  
+  relabel:
+    - target_label: cluster
+      replacement: "TestCluster"

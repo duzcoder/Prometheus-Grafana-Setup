@@ -1,0 +1,4 @@
+metrics_reporter:
+  - class_name: org.apache.cassandra.metrics.prometheus.PrometheusReporter
+    enabled: true
+    prometheus_port: 8079

@@ -1,0 +1,7 @@
+jmx:
+  host: cassandra
+  port: 7199
+
+global:
+  http_listen_port: 9500
+  scrape_timeout: 10s
