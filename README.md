@@ -1,38 +1,30 @@
-# 🖥️ Monitoring Stack: Node Exporter & cAdvisor
+# 🐦 Tweets Dashboard – Big Data Project
 
-This repository contains a **Docker Compose** setup to monitor your system and Docker containers using **Prometheus Node Exporter** and **cAdvisor**.  
-Get real-time metrics for your system, containers, and hardware! 🚀
+This project is a **Big Data dashboard** that collects and visualizes Twitter data. It uses **Apache Cassandra** to store tweets and **Grafana** to create real-time dashboards showcasing tweet statistics.  
+
+Optional system monitoring is included using **Node Exporter** and **cAdvisor**.
 
 ---
 
-## 🛠️ Services
+## 🗂️ Project Overview
 
-### 1️⃣ Node Exporter
+- **Data Source:** Twitter (tweets collected via API or dataset) 🐦  
+- **Database:** Apache Cassandra – highly scalable, NoSQL database for storing tweets 💾  
+- **Visualization:** Grafana – dashboard to display tweet statistics and trends 📊  
+- **Monitoring:** Node Exporter & cAdvisor for system and container metrics 🖥️  
 
-**Image:** `prom/node-exporter:v1.8.2`  
-**Purpose:** Collects hardware and OS metrics from your host machine.  
+**Example Metrics on Dashboard:**
+- Number of tweets per user  
+- Most liked/retweeted tweets  
+and more
 
-**Features:**
-- Mounts `/proc`, `/sys`, and `/` in **read-only** mode 🔒
-- Excludes system paths from filesystem metrics ❌
-- Uses **host networking** for direct access 🌐
-- Auto-restarts unless stopped 🔁
+---
 
-**Docker Compose snippet:**
-```yaml
-nodeexporter:
-  image: prom/node-exporter:v1.8.2
-  container_name: nodeexporter
-  volumes:
-    - /proc:/host/proc:ro
-    - /sys:/host/sys:ro
-    - /:/rootfs:ro
-  command:
-    - '--path.procfs=/host/proc'
-    - '--path.rootfs=/rootfs'
-    - '--path.sysfs=/host/sys'
-    - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
-  restart: unless-stopped
-  network_mode: host
-  labels:
-    org.label-schema.group: "monitoring"
+## 🛠️ Services Setup
+
+### Cassandra
+
+Stores all tweets in a distributed, scalable database. Each tweet record can include:
+
+```text
+tweet_id | user | text | retweets | likes | date
