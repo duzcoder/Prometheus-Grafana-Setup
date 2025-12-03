@@ -1,0 +1,77 @@
+docker start cassandra
+docker compose up -d
+docker exec -it cassandra cqlsh
+docker compose down
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+echo "📊 Step 2: Checking all services are running..."
+docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}" | grep -E "(cassandra|prometheus|grafana|twitter-exporter)"
+
+# Step 3: Show Cassandra data
+echo "🗄️ Step 3: Checking Cassandra data..."
+echo "Current tweet count in Cassandra:"
+
+docker exec cassandra cqlsh -u cassandra -p cassandra -e "SELECT COUNT(*) as total_tweets FROM twitter.tweets;"
+
+# Step 4: Show exporter metrics
+echo ""
+echo "📈 Step 4: Twitter Exporter metrics..."
+echo "--------------------------------------"
+echo "Total metrics available:"
+curl -s http://localhost:9123/metrics | grep -c "twitter_"
+echo ""
+echo "Sample metrics:"
+curl -s http://localhost:9123/metrics | grep -E "twitter_(tweets_total|avg_retweets|avg_likes|active_users)" | head -5
+
+🌐 Step 7: Access URLs:
+📊 Grafana Dashboard:    http://localhost:3000"
+⚡ Prometheus Metrics:   http://localhost:9090"
+🐦 Twitter Exporter:     http://localhost:9123/metrics"
+🗄️ Cassandra:           localhost:9042"
+
+📝 Grafana Credentials:
+Username: admin"
+Password: admin"
+
+docker exec cassandra cqlsh -u cassandra -p cassandra -e "
+USE twitter;
+
+INSERT INTO tweets (tweet_id, user, text, retweets, likes, date) 
+VALUES ('demo1', 'student1', 'Big Data project is amazing!', 45, 120, toTimestamp(now()));
+
+INSERT INTO tweets (tweet_id, user, text, retweets, likes, date) 
+VALUES ('demo2', 'professor', 'Great work on the monitoring setup!', 150, 300, toTimestamp(now()));
+
+INSERT INTO tweets (tweet_id, user, text, retweets, likes, date) 
+VALUES ('demo3', 'university', 'Join our Data Science program!', 80, 200, toTimestamp(now()));
+
+INSERT INTO tweets (tweet_id, user, text, retweets, likes, date) 
+VALUES ('demo4', 'researcher', 'Cassandra performance analysis', 25, 75, toTimestamp(now()));
+
+INSERT INTO tweets (tweet_id, user, text, retweets, likes, date) 
+VALUES ('demo5', 'developer', 'Grafana dashboards are powerful', 60, 150, toTimestamp(now()));
+
+SELECT '✅ Inserted 5 demo tweets!' as message;
+SELECT user, text, retweets, likes FROM tweets LIMIT 5;
+"
+EOF
+
+To stop everything: docker compose down
