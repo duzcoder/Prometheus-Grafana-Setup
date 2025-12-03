@@ -1,73 +1,57 @@
-📊 Twitter Metrics Dashboard — Prometheus + Grafana + Cassandra
+##📊 Twitter Metrics Dashboard — Prometheus + Grafana + Cassandra
 
 A complete Big Data analytics pipeline that collects Twitter metrics, stores tweet data in Cassandra, exposes processed metrics through a custom Prometheus exporter, and visualizes everything in Grafana.
 
 This project showcases data engineering + monitoring + visualization skills with real-time dashboards and rich analytics.
 
-🚀 Features
+###🚀 Features
+
 ✨ Twitter Data Collection
 
-Custom Python script/exporter
+    -Custom Python script/exporter
 
-Dockerized service exposing metrics at :9123/metrics
+    -Dockerized service exposing metrics at :9123/metrics
 
-🗄 Cassandra Database
+    -Cassandra Database
 
-Stores raw tweet data
+    -Stores raw tweet data
 
-Runs via Docker
+    -Runs via Docker
 
-Connects seamlessly with the exporter
+    -Connects seamlessly with the exporter
 
-📈 Prometheus Monitoring
+###📈 Prometheus Monitoring
 
 Scrapes metrics from:
 
-✔ Twitter Exporter (9123)
+    ✔ Twitter Exporter (9123)
 
-✔ Cassandra JMX Exporter (9500)
+    ✔ Cassandra JMX Exporter (9500)
 
-✔ Node Exporter (9100)
+    ✔ Node Exporter (9100)
 
-📊 Grafana Dashboards
+###📊 Grafana Dashboards
 
-Includes visualizations for:
+    -Includes visualizations for:
 
-Tweet volume
+    -Tweet volume
 
-Likes & retweets
+    -Likes & retweets
 
-Engagement distribution
+    -Engagement distribution
 
-Top users
+    -Top users
 
-Hourly tweet patterns
+    -Hourly tweet patterns
 
-Active users
+    -Active users
 
-Viral tweets
-
-🗂 Architecture Overview
-+------------------------+
-|  Python Twitter Exporter|
-|  twitter_exporter.py    |
-+------------------------+
-             |
-             V
-+------------------------+
-|      Cassandra DB      |
-+------------------------+
-             |
-             V
-+-------------------+           +----------------+
-|     Prometheus    |  ----->   |    Grafana     |
-| (time-series DB)  |           |  (Dashboards)  |
-+-------------------+           +----------------+
+    -Viral tweets
 
 
-🐳 Running the Project (Docker Compose)
+###🐳 Running the Project (Docker Compose)
 Start all services:
-docker compose up -d
+```docker compose up -d```
 
 | Service            | Port | Description               |
 | ------------------ | ---- | ------------------------- |
@@ -77,31 +61,30 @@ docker compose up -d
 | prometheus         | 9090 | Prometheus UI & storage   |
 | grafana            | 3000 | Dashboards visualization  |
 
-🧰 Technologies Used
+###🧰 Technologies Used
 
-Python (custom exporter)
+    -Python (custom exporter)
 
-Cassandra (NoSQL storage)
+    -Cassandra (NoSQL storage)
 
-Prometheus (metrics scraping & DB)
+    -Prometheus (metrics scraping & DB)
 
-Grafana (visualization)
+    -Grafana (visualization)
 
-Node Exporter / JMX Exporter
+    -Node Exporter / JMX Exporter
 
-Docker & Docker Compose
+    -Docker & Docker Compose
 
-📚 Use Cases
+###📚 Use Cases
 
-This project is ideal for:
+    -This project is ideal for:
 
-Big Data class projects
+    -Big Data class projects
 
-Monitoring demonstrations
+    -Monitoring demonstrations
 
-Real-time analytics practice
+    -Real-time analytics practice
 
-Building Grafana dashboards
+    -Building Grafana dashboards
 
-Learning Prometheus exporter development
-
+    -Learning Prometheus exporter development
