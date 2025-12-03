@@ -1,10 +1,10 @@
-##📊 Twitter Metrics Dashboard — Prometheus + Grafana + Cassandra
+📊 Twitter Metrics Dashboard — Prometheus + Grafana + Cassandra
 
 A complete Big Data analytics pipeline that collects Twitter metrics, stores tweet data in Cassandra, exposes processed metrics through a custom Prometheus exporter, and visualizes everything in Grafana.
 
 This project showcases data engineering + monitoring + visualization skills with real-time dashboards and rich analytics.
 
-###🚀 Features
+🚀 Features
 
 ✨ Twitter Data Collection
 
@@ -20,7 +20,7 @@ This project showcases data engineering + monitoring + visualization skills with
 
     -Connects seamlessly with the exporter
 
-###📈 Prometheus Monitoring
+📈 Prometheus Monitoring
 
 Scrapes metrics from:
 
@@ -30,7 +30,7 @@ Scrapes metrics from:
 
     ✔ Node Exporter (9100)
 
-###📊 Grafana Dashboards
+📊 Grafana Dashboards
 
     -Includes visualizations for:
 
@@ -49,7 +49,7 @@ Scrapes metrics from:
     -Viral tweets
 
 
-###🐳 Running the Project (Docker Compose)
+🐳 Running the Project (Docker Compose)
 Start all services:
 ```docker compose up -d```
 
@@ -61,7 +61,7 @@ Start all services:
 | prometheus         | 9090 | Prometheus UI & storage   |
 | grafana            | 3000 | Dashboards visualization  |
 
-###🧰 Technologies Used
+🧰 Technologies Used
 
     -Python (custom exporter)
 
@@ -75,7 +75,7 @@ Start all services:
 
     -Docker & Docker Compose
 
-###📚 Use Cases
+📚 Use Cases
 
     -This project is ideal for:
 
